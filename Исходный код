@@ -1,0 +1,87 @@
+#include <iostream>
+
+using namespace std;
+
+void color_definition(int a, int b);
+
+int main(){
+    setlocale(LC_ALL, "RU");
+    
+    int k;
+    int l;
+    int m;
+    int n;
+    
+    cout << "Введите первую координату фигуры 1 : ";
+    cin >> k;
+    cout << "Введите вторую координату фигуры 1 : ";
+    cin >> l;
+    cout << "Введите первую координату фигуры 2 : ";
+    cin >> m;
+    cout << "Введите вторую координату фигуры 2 : ";
+    cin >> n;
+    color_definition(k, l);
+    color_definition(m, n);
+    
+    int your_change;
+    cout << endl << "1. " << "Ферзь" << endl << "2. " << "Ладья" << endl << "3. " << "Слон" << endl << "4. " << "Конь" << endl;
+    cout << endl << "Введите номер фигуры: ";
+    cin >> your_change;
+    
+    switch (your_change){
+        case 1:
+            if ( (k == m) || (l == n) || abs(k - m) == abs(l - n) )
+                cout << "Ферзь может попасть на поле в один ход" << endl;
+            else
+                cout << "Ферзь не может попасть на поле в один ход" << endl;
+            break;
+        case 2:
+            if ( (k == m) || (l == n) )
+                cout << "Ладья может попасть на поле в один ход" << endl;
+            else
+                cout << "Ладья не может попасть на поле в один ход" << endl;
+            break;
+        case 3:
+            if ( abs(k - m) == abs(l - n) )
+                cout << "Слон может попасть на поле в один ход" << endl;
+            else
+                cout << "Слон не может попасть на поле в один ход" << endl;
+            break;
+        case 4:
+            int dx = abs(k - m);
+            int dy = abs(l - n);
+            if ((dx == 1 && dy == 2) || (dx == 2 && dy == 1))
+                cout << "Конь может попасть на поле в один ход" << endl;
+            else
+                cout << "Конь не может попасть на поле в один ход" << endl;
+            break;
+            
+            }
+    if (your_change == 1 || your_change == 2 || your_change == 3) {
+                int intermediate_x = k;
+                int intermediate_y = l;
+
+                if (k < m) {
+                    intermediate_x++;
+                } else if (k > m) {
+                    intermediate_x--;
+                }
+
+                if (l < n) {
+                    intermediate_y++;
+                } else if (l > n) {
+                    intermediate_y--;
+                }
+
+                cout << "(" << intermediate_x << ", " << intermediate_y << ")" << endl;
+            }
+    
+    return 0;
+}
+
+void color_definition(int a, int b){
+    if ((a + b) % 2 == 1)
+        cout << "Черный" << endl;
+    else
+        cout << "Белый" << endl;
+}
